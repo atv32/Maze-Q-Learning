@@ -20,12 +20,13 @@ def create_terminal_state():
 
 
 def create_boundaries():
+    global walls
     for (x, y) in walls:
         board.create_rectangle(x*width, y*height, (x+1)*width, (y+1)*height, fill="black", width=1)
 
 
 def try_move(dx, dy):
-    global player, x_cord, y_cord, score, walk_reward, me, restart
+    global player, x_cord, y_cord, score, walk_reward, me, restart, walls
     if restart is 1:
         rerun_main()
     new_x = player[0] + dx
@@ -156,6 +157,7 @@ terminal_state = [(4, 0, "green", 1)]
 cell_scores = {}
 create_board()
 create_terminal_state()
+create_boundaries()
 
 me = board.create_rectangle(player[0]*width+width*.2, player[1]*height+height*.2,
                             player[0]*width+width*.8, player[1]*height+height*.8,
